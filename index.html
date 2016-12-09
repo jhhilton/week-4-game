@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Crystal Collector</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+
+<style>
+	
+  .page-header {
+      background-color: #a54545;
+      color: #fff;
+      padding: 100px 25px;
+      font-family: 'Oswald', sans-serif;
+      margin-top: 0px;
+      padding-bottom: 60px;
+      padding-top: 60px;
+  }
+
+  .firstRow{
+
+	padding-bottom: 10px;
+
+  }
+
+  .jewels{
+
+	padding: 10px;
+
+  }
+
+  .reporting {
+
+	background-color: #efefef;
+
+  }
+
+  .instructions{
+
+	padding-left: 40px;
+
+  }
+
+  .wins{
+
+	padding-top: 20px;
+	padding-bottom: 20px;
+
+  }
+
+  #winMessage{
+
+	color: #a54545;
+
+  }
+
+  body {
+
+	font-family: 'Oswald', sans-serif;
+
+  }
+
+</style>
+
+</head>
+
+<body>
+
+<div class=" firstRow row">
+<div class="page-header text-center">
+<h1>Crystal Collector</h1>
+</div>
+<div class="instructions col-md-6">
+<p><br><br>You will be given a random number at the start of the game. There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.<br><br> You win the game by matching your total score to the random number, and you lose the game if your total score goes above the random number.<br><br> The value of each crystal is hidden from you until you click on it.Each time the game starts, the values of each crystal will change.</p>
+</div>
+
+<div class="col-md-6 text-center">
+<h2>Pick a gem!</h2>
+<img class="jewels" id="diamond" src="assets\images\Diamond-icon.png" alt="Diamond" height="96" width="96">
+<img class="jewels" id="gem" src="assets\images\Gem-icon.png" alt="Gem" height="96" width="96">
+<img class="jewels" id="ruby" src="assets\images\Ruby-icon.png" alt="Ruby" height="96" width="96">
+<img class="jewels" id="topaz" src="assets\images\Topaz-icon.png" alt="Topaz" height="96" width="96">
+</div>
+</div>
+
+<div class="reporting wrapper row">
+<div class="text-center col-md-6">
+	
+<h2><b>Goal:</b><br></h2>
+<h2 id="randWin"></h2>
+
+</div>
+
+<div class="text-center col-md-6">
+<h2><b>Your Score:</b><br></h2>
+<h2 id="myScore"></h2>
+
+</div>
+
+</div>
+
+<div class="row wins">
+
+<div class="text-center col-md-2 col-md-push-1">
+<h2><b>Wins: </b>0</h2>
+
+</div>
+
+<div class="text-center col-md-2 col-md-push-1">
+<h2><b>Losses: </b>0</h2>
+
+</div>
+
+<div class="text-center col-md-6 col-md-push-2">
+<h2 id="winMessage"></h2>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+
+<script> 
+
+currentScore = 0
+var targetScore = Math.ceil(Math.random()*60) + 20
+var diamondScore = Math.ceil(Math.random()*(0.5 * targetScore))
+var gemScore = Math.ceil(Math.random()*(0.5 * targetScore))
+var rubyScore = Math.ceil(Math.random()*(0.5 * targetScore))
+var topazScore = Math.ceil(Math.random()*(0.5 * targetScore))
+
+$(document).ready(function(){
+	$("#randWin").html(targetScore);
+
+});
+
+$(document).ready(function(){
+	$("#myScore").html(currentScore);
+
+});
+
+$(document).ready(function(){
+    $("#diamond").click(function(){
+    	currentScore = currentScore + diamondScore
+       $("#myScore").html(currentScore);
+        if (currentScore > targetScore) {
+		$("#winMessage").html("You Lose!");
+		} else if (currentScore === targetScore) {
+			$("#winMessage").html("You Win!");
+			}
+    	});
+    });
+
+$(document).ready(function(){
+    $("#gem").click(function(){
+       currentScore = currentScore + gemScore
+       $("#myScore").html(currentScore);
+        if (currentScore > targetScore) {
+		$("#winMessage").html("You Lose!");
+		} else if (currentScore === targetScore) {
+			$("#winMessage").html("You Win!");
+			}   
+    	});
+    });
+
+$(document).ready(function(){
+    $("#ruby").click(function(){
+       currentScore = currentScore + rubyScore
+       $("#myScore").html(currentScore); 
+        if (currentScore > targetScore) {
+		$("#winMessage").html("You Lose!");
+		} else if (currentScore === targetScore) {
+		$("#winMessage").html("You Win!");
+			}   
+    	});
+    });
+
+$(document).ready(function(){
+    $("#topaz").click(function(){
+       currentScore = currentScore + topazScore
+       $("#myScore").html(currentScore);
+       	if (currentScore > targetScore) {
+		$("#winMessage").html("You Lose!");
+		} else if (currentScore === targetScore) {
+			$("#winMessage").html("You Win!");
+			}
+    	});	
+    });
+
+
+</script>
+
+</body>
+
+</html>
